@@ -3,7 +3,7 @@ const fs = require("fs");
 const axios = require("axios");
 require("dotenv").config();
 const https = require("https");
-const serverUrl = require("./config/url");
+const { serverUrl } = require("./config/url");
 
 /**
  * Disable only in development mode

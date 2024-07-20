@@ -16,6 +16,24 @@ const validateUser = (req, res, next) => {
   }
 };
 
+const validateTransaction = (req, res, next) => {
+  console.log("validateTransaction MIDDLEWARE LOGGED");
+
+  console.log("req.body", req.body);
+
+  if (
+    req?.body?.details &&
+    req?.body?.amount &&
+    req?.body?.senderId &&
+    req?.body?.receiverId
+  ) {
+    next();
+  } else {
+    console.log("INVALID=>", req.body);
+    res.json({ msg: "Invalid Params" });
+  }
+};
+
 const authoriseDelete = (req, res, next) => {
   console.log("authoriseDelete MIDDLEWARE LOGGED");
 
@@ -31,5 +49,6 @@ const authoriseDelete = (req, res, next) => {
 module.exports = {
   myLogger,
   validateUser,
-  authoriseDelete
+  authoriseDelete,
+  validateTransaction
 };

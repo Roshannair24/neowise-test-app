@@ -1,7 +1,10 @@
 const router = require("express").Router();
 
 const { createTransaction } = require("../controllers/transactionController");
-const { myLogger } = require("../middlewares/testMiddleware");
+const {
+  myLogger,
+  validateTransaction,
+} = require("../middlewares/testMiddleware");
 
 router.route("/test").post((req, res) => {
   res.json({
@@ -9,6 +12,6 @@ router.route("/test").post((req, res) => {
   });
 });
 
-router.route("/").post(myLogger, createTransaction);
+router.route("/").post(validateTransaction, createTransaction);
 
 module.exports = router;

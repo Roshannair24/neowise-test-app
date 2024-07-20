@@ -2,7 +2,8 @@ const https = require("https");
 const fs = require("fs");
 const express = require("express");
 require("dotenv").config();
-const mongoUrl = "mongodb://127.0.0.1:27017/neowise-db";
+const { mongodbUrl } = require("./config/url");
+
 const mongoose = require("mongoose");
 
 const app = express();
@@ -25,7 +26,7 @@ app.get("/", (req, res) => {
 });
 
 //mongodb connection
-mongoose.connect(mongoUrl, {
+mongoose.connect(mongodbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   // useCreateIndex: true,
