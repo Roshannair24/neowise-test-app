@@ -1,6 +1,9 @@
 const router = require("express").Router();
 
-const { createTransaction } = require("../controllers/transactionController");
+const {
+  createTransaction,
+  deleteTransaction,
+} = require("../controllers/transactionController");
 const {
   myLogger,
   validateTransaction,
@@ -13,5 +16,7 @@ router.route("/test").post((req, res) => {
 });
 
 router.route("/").post(validateTransaction, createTransaction);
+
+router.route("/:transactionId").delete(deleteTransaction);
 
 module.exports = router;

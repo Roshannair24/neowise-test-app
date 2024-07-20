@@ -1,4 +1,5 @@
 const User = require("../modals/userModal");
+const Transaction = require("../modals/transactionModal");
 
 const objectIsEmpty = (localObj) => {
   if (Object.keys(localObj).length > 0) {
@@ -29,4 +30,27 @@ const findUser = (localId) => {
   return UserPromise;
 };
 
-module.exports = { findUser, objectIsEmpty };
+const findTransaction = (localId) => {
+  let TransactionPromise = new Promise((resolve, reject) => {
+    Transaction.find({
+      transactionId: localId,
+    })
+      .then((data) => {
+        // console.log("user data=", data);
+
+        if (data.length > 0) {
+          resolve(data[0]);
+        } else {
+          resolve({});
+        }
+      })
+      .catch((err) => {
+        console.log("err=", err);
+        reject({ err: err });
+      });
+  });
+
+  return TransactionPromise;
+};
+
+module.exports = { findUser, objectIsEmpty, findTransaction };
