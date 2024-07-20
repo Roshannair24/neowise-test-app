@@ -4,6 +4,8 @@
 /node_modules
 /neowise-test-app-client/node_modules
 /neowise-test-app-server/node_modules
+/neowise-test-app-server/data
+
 /.pnp
 .pnp.js
 
