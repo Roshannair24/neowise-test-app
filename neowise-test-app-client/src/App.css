@@ -2,6 +2,29 @@
   text-align: center;
 }
 
+/* css reset */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* to set root to 10px */
+  font-size: 62.5%;
+}
+
+:root {
+  --call-to-action: #07c511;
+
+  --bg-1: #0a1018;
+
+  --bg-grey-1: #f0f0f0;
+  --bg-grey-2: #bdbcbc;
+  --bg-grey-3: #171c23;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +58,194 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.bg-col-primary {
+  background-color: var(--bg-1);
+}
+
+.bg-col-bg-grey-3 {
+  background-color: var(--bg-grey-3);
+}
+
+.bg-col-fff {
+  background-color: #fff;
+}
+.bg-s-white {
+  background-color: rgb(222, 215, 215);
+}
+.w-100 {
+  width: 100%;
+}
+
+.w-70 {
+  width: 70%;
+}
+
+.w-80 {
+  width: 80%;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.w-30 {
+  width: 30%;
+}
+
+.w-20 {
+  width: 20%;
+}
+
+.w-10 {
+  width: 10%;
+}
+
+.h-5rem {
+  height: 5rem;
+}
+
+.h-7rem {
+  height: 7rem;
+}
+
+.h-100vh {
+  height: 100vh;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-flex-dir-column {
+  flex-direction: column;
+}
+
+.d-flex-space-between {
+  justify-content: space-between;
+}
+
+.d-flex-align-items-cent {
+  align-items: center;
+}
+
+.d-flex-justify-content-cent {
+  justify-content: center;
+}
+
+.flex-end {
+  align-items: flex-end;
+}
+
+.gap-2 {
+  gap: 2rem;
+}
+
+.gap-1 {
+  gap: 1rem;
+}
+
+.gap-0-5 {
+  gap: 0.5rem;
+}
+
+.p-1 {
+  padding: 1rem;
+}
+
+.p-0-5 {
+  padding: 0.5rem;
+}
+
+.f-20 {
+  font-size: 20px;
+}
+
+.f-14 {
+  font-size: 14px;
+}
+
+.overflow-x {
+  overflow-x: auto;
+}
+
+.overflow-y {
+  overflow-y: auto;
+}
+
+.flex-basis-20 {
+  flex-basis: 20px;
+}
+
+.flex-basis-100 {
+  flex-basis: 100px;
+}
+
+.flex-basis-150 {
+  flex-basis: 150px;
+}
+
+.flex-basis-200 {
+  flex-basis: 200px;
+}
+
+.flex-basis-300 {
+  flex-basis: 300px;
+}
+
+.flex-basis-400 {
+  flex-basis: 400px;
+}
+
+.flex-basis-1200 {
+  flex-basis: 1200px;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+.flex-grow-0 {
+  flex-grow: 0;
+}
+
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+.shadow-2-5 {
+  box-shadow: 0 0 2.5px grey;
+}
+.rad-3-all {
+  border-radius: 3px;
+}
+
+.rad-8-all {
+  border-radius: 8px;
+}
+
+.border-bg-grey-2 {
+  border: solid 1px var(--bg-grey-2);
+}
+
+.border-bg-grey-3 {
+  border: solid 1px var(--bg-grey-3);
+}
+
+
+
+.weight-600 {
+  font-weight: 600;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.t-right {
+  text-align: right;
+}
+.t-left {
+  text-align: left;
 }

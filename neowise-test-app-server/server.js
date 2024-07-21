@@ -17,9 +17,11 @@ app.use(express.json({ limit: "50mb" }));
 
 let transactionRoute = require("./routes/transactionsRoute");
 let usersRoute = require("./routes/usersRoute");
+let authRoute = require("./routes/authRoute");
 
 app.use("/api/transactions", transactionRoute);
 app.use("/api/users", usersRoute);
+app.use("/api/auth", authRoute);
 
 app.get("/", (req, res) => {
   res.send("neowise Hello World! HTTPS!");
