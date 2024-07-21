@@ -1,6 +1,16 @@
 const User = require("../modals/userModal");
 const Transaction = require("../modals/transactionModal");
 
+const delay = (milliseconds) => {
+  let delayPromise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(milliseconds);
+    }, milliseconds);
+  });
+
+  return delayPromise;
+};
+
 const objectIsEmpty = (localObj) => {
   if (Object.keys(localObj).length > 0) {
     return false;
@@ -53,4 +63,4 @@ const findTransaction = (localId) => {
   return TransactionPromise;
 };
 
-module.exports = { findUser, objectIsEmpty, findTransaction };
+module.exports = { delay,findUser, objectIsEmpty, findTransaction };

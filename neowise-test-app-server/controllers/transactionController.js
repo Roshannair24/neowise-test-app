@@ -1,7 +1,80 @@
 const mongoose = require("mongoose");
 const User = require("../modals/userModal");
 const Transaction = require("../modals/transactionModal");
-const { findUser, objectIsEmpty, findTransaction } = require("../utils/utils");
+const {
+  delay,
+  findUser,
+  objectIsEmpty,
+  findTransaction,
+} = require("../utils/utils");
+
+const getTransaction = async (req, res, next) => {
+  console.log("getTransaction  req.query", req?.query);
+  console.log("getTransaction  req.params", req?.params);
+
+  try {
+    await delay(2000);
+
+    let primaryTransactionObj = await findTransaction(
+      req?.params?.transactionId
+    );
+    console.log("primaryTransactionObj");
+
+    console.log(primaryTransactionObj);
+
+    // console.log(" global.redisClient", global.redisClient);
+
+    // Store the data in Redis with an expiry time (e.g., 3600 seconds)
+    await global.redisClient.set(
+      req?.params?.transactionId,
+      JSON.stringify(primaryTransactionObj),
+      { EX: 1 * 10 }
+    );
+
+    console.log("setttt");
+    res.json(primaryTransactionObj);
+  } catch (error) {
+    res.json({
+      msg: "failed",
+      error: error?.message || error,
+    });
+  }
+};
+
+const getTransactions = async (req, res, next) => {
+  console.log(" getTransactions  req.query", req?.query);
+  console.log(" getTransactions  req.params", req?.params);
+
+  await delay(2000);
+
+  const pageNumber = Number(req?.query?.page) || 1; // Page number (default is 1)
+  const pageSize = Number(req?.query?.limit) || 3; // Number of documents per page
+
+  const skip = (pageNumber - 1) * pageSize;
+
+  try {
+    const items = await Transaction.find({}).skip(skip).limit(pageSize);
+
+    // Store the data in Redis with an expiry time (e.g., 3600 seconds)
+    await global.redisClient.set(
+      `PAGE${pageNumber}LIMIT${pageSize}`,
+      JSON.stringify(items),
+      { EX: 1 * 10 }
+    );
+
+    // res.json({
+    //   msg: "Transactions",
+    //   list: items,
+    // });
+
+    res.json(items);
+  } catch (error) {
+    res.json({
+      msg: "failed",
+      error: error?.message || error,
+    });
+  }
+};
 
 const createTransaction = async (req, res, next) => {
   console.log("createTransaction req.body", req.body);
@@ -132,4 +205,9 @@ const deleteTransaction = async (req, res, next) => {
   }
 };
 
-module.exports = { createTransaction, deleteTransaction };
+module.exports = {
+  getTransaction,
+  getTransactions,
+  createTransaction,
+  deleteTransaction,
+};

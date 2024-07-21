@@ -3,7 +3,7 @@ const fs = require("fs");
 const express = require("express");
 require("dotenv").config();
 const { mongodbUrl } = require("./config/url");
-
+const { createClient } = require("redis");
 const mongoose = require("mongoose");
 
 const app = express();
@@ -35,6 +35,21 @@ const connection = mongoose.connection;
 connection.once("open", () => {
   console.log("Connection with mongo established succesfully");
 });
+
+global.redisClient = null;
+//redis
+const createRedisConnection = async () => {
+  global.redisClient = await createClient()
+    .on("error", (err) => console.log("Redis Client Error", err))
+    .connect();
+
+  // await  global.redisClient.set("key", "value");
+  // const value = await  global.redisClient.get("key");
+  // console.log("value=", value);
+  // await client.disconnect();
+};
+
+createRedisConnection();
 
 // SSL/TLS certificate files
 const options = {
