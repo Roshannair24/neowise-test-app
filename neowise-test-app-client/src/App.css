@@ -23,6 +23,9 @@ html {
   --bg-grey-1: #f0f0f0;
   --bg-grey-2: #bdbcbc;
   --bg-grey-3: #171c23;
+  --bg-grey-4: #161c23;
+
+  --fg-yellow-1: #c88e4f;
 }
 
 .App-logo {
@@ -68,22 +71,41 @@ html {
   background-color: var(--bg-grey-3);
 }
 
+
+.bg-col-bg-grey-4 {
+  background-color: var(--bg-grey-4);
+}
+
+
 .bg-col-fff {
   background-color: #fff;
 }
 .bg-s-white {
   background-color: rgb(222, 215, 215);
 }
+
+.col-primary {
+  color: var(--bg-1);
+}
+
+.col-yellow-1 {
+  color: var(--fg-yellow-1);
+}
+
+.col-bg-grey-1 {
+  color: var(--bg-grey-1);
+}
+
 .w-100 {
   width: 100%;
 }
 
-.w-70 {
-  width: 70%;
-}
-
 .w-80 {
   width: 80%;
+}
+
+.w-70 {
+  width: 70%;
 }
 
 .w-50 {
@@ -136,6 +158,10 @@ html {
 
 .flex-end {
   align-items: flex-end;
+}
+
+.justify-flex-end {
+  justify-content: flex-end;
 }
 
 .gap-2 {
@@ -232,8 +258,6 @@ html {
 .border-bg-grey-3 {
   border: solid 1px var(--bg-grey-3);
 }
-
-
 
 .weight-600 {
   font-weight: 600;

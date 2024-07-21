@@ -40,6 +40,11 @@ const LoginContainer = () => {
     if (authLatestReduxState?.accessToken !== "") {
       console.log("naviggg");
 
+
+
+
+      sessionStorage.setItem("accessToken", authLatestReduxState?.accessToken);
+
       navigate(`/home/${uuid}`);
     }
   }, [authLatestReduxState?.accessToken]);

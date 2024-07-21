@@ -6,6 +6,8 @@ const { mongodbUrl } = require("./config/url");
 const { createClient } = require("redis");
 const mongoose = require("mongoose");
 
+const { authenticateJWT } = require("./middlewares/testMiddleware");
+
 const app = express();
 
 const port = 8500;
@@ -19,8 +21,8 @@ let transactionRoute = require("./routes/transactionsRoute");
 let usersRoute = require("./routes/usersRoute");
 let authRoute = require("./routes/authRoute");
 
-app.use("/api/transactions", transactionRoute);
-app.use("/api/users", usersRoute);
+app.use("/api/transactions",authenticateJWT, transactionRoute);
+app.use("/api/users", authenticateJWT, usersRoute);
 app.use("/api/auth", authRoute);
 
 app.get("/", (req, res) => {

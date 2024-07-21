@@ -5,7 +5,11 @@ const {
   validateUser,
   authoriseDelete,
 } = require("../middlewares/testMiddleware");
-const { createUser, deleteUsers } = require("../controllers/usersController");
+const {
+  createUser,
+  deleteUsers,
+  getUserDetails,
+} = require("../controllers/usersController");
 
 router.route("/test").post(myLogger, (req, res) => {
   res.json({
@@ -14,6 +18,8 @@ router.route("/test").post(myLogger, (req, res) => {
 });
 
 router.route("/").post(validateUser, createUser);
+
+router.route("/:uuid").get(getUserDetails);
 
 //delete user MASTER Access
 router.route("/").delete(authoriseDelete, deleteUsers);

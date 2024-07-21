@@ -53,7 +53,10 @@ const getTransactions = async (req, res, next) => {
   const skip = (pageNumber - 1) * pageSize;
 
   try {
-    const items = await Transaction.find({}).skip(skip).limit(pageSize);
+    const items = await Transaction.find({})
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(pageSize);
 
     // Store the data in Redis with an expiry time (e.g., 3600 seconds)
     await global.redisClient.set(

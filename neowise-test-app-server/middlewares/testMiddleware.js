@@ -1,6 +1,23 @@
+const jwt = require("jsonwebtoken");
+const SECRET_KEY = process.env.SECRET_KEY;
+
 const myLogger = (req, res, next) => {
   console.log("MIDDLEWARE LOGGED");
   next();
+};
+
+// Middleware to protect routes
+const authenticateJWT = (req, res, next) => {
+  const token = req.header("Authorization")?.split(" ")[1];
+
+  console.log("MIDDLEWARE token", token);
+  if (!token) return res.sendStatus(401);
+
+  jwt.verify(token, SECRET_KEY, (err, user) => {
+    if (err) return res.sendStatus(403);
+    req.user = user;
+    next();
+  });
 };
 
 const transactionIdCacheMiddleware = async (req, res, next) => {
@@ -109,4 +126,5 @@ module.exports = {
   validateTransaction,
   transactionIdCacheMiddleware,
   transactionsPaginatedListCacheMiddleware,
+  authenticateJWT 
 };

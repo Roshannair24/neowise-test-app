@@ -4,6 +4,7 @@ import counterSlice from "../reducers/testSlice";
 import rootSaga from "../sagas/rootSaga";
 import snackbarSlice from "../reducers/snackbarReducer";
 import authSlice from "../reducers/loginReducer";
+import transactionSlice from "../reducers/transactionReducer";
 // create the saga middleware
 const sagaMiddleware = createSagaMiddleware();
 
@@ -12,6 +13,7 @@ export default configureStore({
     counter: counterSlice,
     SnackbarReducer: snackbarSlice,
     authReducer: authSlice,
+    transactionReducer: transactionSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(sagaMiddleware),
