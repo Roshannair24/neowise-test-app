@@ -6,11 +6,7 @@ import { updateUserdata } from "../../reducers/loginReducer";
 
 //rorkersaga
 export function* getUserDataSaga(action) {
-  console.log("getUserDataSaga action", action);
-
   let resp = yield call(getUserDataApi, action);
-
-  console.log("getUserDataSaga resp.data", resp?.data);
 
   if (resp?.data) {
     // yield put(

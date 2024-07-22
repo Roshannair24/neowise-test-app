@@ -4,7 +4,6 @@ import { increment, decrement } from "../reducers/testSlice";
 
 const CounterComp = () => {
   const latestRedux = useSelector((state) => state?.counter);
-  console.log("latestRedux", latestRedux);
 
   const count = useSelector((state) => state?.counter?.value);
   const dispatch = useDispatch();

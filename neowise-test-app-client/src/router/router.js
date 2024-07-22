@@ -3,6 +3,8 @@ import * as React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginContainer from "../containers/Login";
 import HomepageContainer from "../containers/Homepage";
+import TransactionDetailsContainer from "../containers/TransactionDetails";
+import CreateTransactionContainer from "../containers/CreateTransactionContainer";
 class Router extends React.Component {
   constructor(props) {
     super(props);
@@ -36,6 +38,16 @@ class Router extends React.Component {
         <div>
           <Routes>
             <Route path="/" element={<LoginContainer />} />
+
+            <Route
+              path="/home/:uuid/create-transaction"
+              element={<CreateTransactionContainer />}
+            />
+
+            <Route
+              path="/home/:uuid/:transactionId"
+              element={<TransactionDetailsContainer />}
+            />
 
             <Route path="/home/:uuid" element={<HomepageContainer />} />
 

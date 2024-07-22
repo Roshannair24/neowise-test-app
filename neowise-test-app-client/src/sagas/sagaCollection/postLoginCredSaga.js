@@ -5,11 +5,7 @@ import { postLoginCredApi } from "../../services/postLoginCredService";
 import { updateAccessToken } from "../../reducers/loginReducer";
 //rorkersaga
 export function* postLoginCredSaga(action) {
-  console.log("postLoginCredSaga action", action);
-
   let resp = yield call(postLoginCredApi, action);
-
-  console.log("resp.data", resp?.data);
 
   if (resp?.data?.accessToken) {
     // yield put(

@@ -63,4 +63,47 @@ const findTransaction = (localId) => {
   return TransactionPromise;
 };
 
-module.exports = { delay,findUser, objectIsEmpty, findTransaction };
+const deleteMatchingPatternsRedis = async (pattern) => {
+  let cursor = "0";
+  console.log("global.redisClient", global.redisClient);
+
+  let deleteMatchingPatternsRedisPromise = new Promise(
+    async (resolve, reject) => {
+      const reply = await global.redisClient.scan(
+        cursor,
+        "MATCH",
+        pattern,
+        "COUNT",
+        100
+      );
+
+      console.log("reply", reply);
+
+      let keys = reply.keys;
+
+      if (keys?.length > 0) {
+        console.log("1");
+
+        for (const singleKey of keys) {
+          console.log("singleKey", singleKey);
+
+          let delResp = await global.redisClient.del(singleKey);
+
+          console.log(" delResp", delResp);
+        }
+      }
+
+      resolve({ msg: "All keys matching the pattern have been deleted" });
+    }
+  );
+
+  return deleteMatchingPatternsRedisPromise;
+};
+
+module.exports = {
+  delay,
+  findUser,
+  objectIsEmpty,
+  findTransaction,
+  deleteMatchingPatternsRedis,
+};

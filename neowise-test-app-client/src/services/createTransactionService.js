@@ -3,13 +3,15 @@ import axios from "axios";
 
 let responseAxios = null;
 
-export const getUserDataApi = async (action) => {
+export const createTransactionApi = async (action) => {
   const payload = action.payload;
 
   let accessToken = sessionStorage.getItem("accessToken");
 
+  console.log("createTransactionApi  payload =====>", payload);
+
   await axios
-    .get(`${url}/api/users/${action?.payload?.uuid}`, {
+    .post(`${url}/api/transactions`,payload, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

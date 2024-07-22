@@ -6,8 +6,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import moment from "moment";
 import { getUserData } from "../reducers/loginReducer";
-import { getTransactions } from "../reducers/transactionReducer";
-
+import {
+  getTransactions,
+  deleteTransaction,
+} from "../reducers/transactionReducer";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import UndoOutlinedIcon from "@mui/icons-material/UndoOutlined";
+import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
+import ArrowForwardOutlinedIcon from "@mui/icons-material/ArrowForwardOutlined";
 const HomepageContainer = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,14 +25,10 @@ const HomepageContainer = () => {
   const transactionsLatestReduxState = useSelector(
     (state) => state?.transactionReducer
   );
-  console.log(" paramObj ", paramObj);
 
-  console.log("authLatestReduxState ", authLatestReduxState);
   console.log("transactionsLatestReduxState", transactionsLatestReduxState);
 
   useEffect(() => {
-    console.log(" paramObj?.uuid yoooo", paramObj?.uuid);
-
     dispatch(
       getUserData({
         uuid: paramObj?.uuid,
@@ -51,6 +53,16 @@ const HomepageContainer = () => {
     if (page > 1) {
       setpage((prev) => prev - 1);
     }
+  };
+
+  const navigateToTransactionInfo = (localUuid) => {
+    console.log("localUuid", localUuid);
+
+    navigate(`/home/${paramObj?.uuid}/${localUuid}`);
+  };
+
+  const navigateToCreateTransaction = () => {
+    navigate(`/home/${paramObj?.uuid}/create-transaction`);
   };
 
   return (
@@ -96,7 +108,7 @@ const HomepageContainer = () => {
               <Button
                 variant="contained"
                 // color="primaryPallete"
-                // onClick={validateInput}
+                onClick={navigateToCreateTransaction}
                 sx={{ width: "100%" }}
               >
                 Create new transaction
@@ -106,7 +118,7 @@ const HomepageContainer = () => {
         </div>
 
         <div className="d-flex d-flex-dir-column gap-1">
-          <div className="d-flex gap-0-5 font-14 weight-600 col-bg-grey-1">
+          <div className="d-flex gap-0-5 f-14 weight-600 col-bg-grey-1">
             <div className="w-20">Time</div>
             <div className="w-20">Sender</div>
             <div className="w-20">Receiver</div>
@@ -118,7 +130,7 @@ const HomepageContainer = () => {
             (item, index) => {
               return (
                 <div
-                  className="d-flex gap-0-5 font-14 bg-col-bg-grey-4 col-bg-grey-1 p-0-5"
+                  className="d-flex gap-0-5 f-12 bg-col-bg-grey-4 col-bg-grey-1 p-0-5"
                   key={index}
                 >
                   <div className="w-20">
@@ -127,7 +139,8 @@ const HomepageContainer = () => {
                   <div className="w-20">{item?.senderId}</div>
                   <div className="w-20">{item?.receiverId}</div>
                   <div className="w-20">{item?.amount}</div>
-                  <div className="w-20">
+
+                  <div className="w-10">
                     <div
                       style={{
                         width: "100%",
@@ -137,10 +150,47 @@ const HomepageContainer = () => {
                       <Button
                         variant="outlined"
                         // color="primaryPallete"
-                        // onClick={validateInput}
+                        onClick={() =>
+                          navigateToTransactionInfo(item?.transactionId)
+                        }
+                        // disabled={
+                        //   item?.senderId === paramObj?.uuid ? false : true
+                        // }
                         sx={{ width: "100%" }}
                       >
-                        Reverse transaction
+                        Info
+                      </Button>
+
+                      {/* <InfoOutlinedIcon /> */}
+                    </div>
+                  </div>
+
+                  <div className="w-10">
+                    <div
+                      style={{
+                        width: "100%",
+                        // backgroundColor: "yellow"
+                      }}
+                    >
+                      <Button
+                        variant="outlined"
+                        // color="primaryPallete"
+                        onClick={() =>
+                          dispatch(
+                            deleteTransaction({
+                              transactionId: item?.transactionId,
+                              page: page,
+                              limit: 5,
+                            })
+                          )
+                        }
+                        disabled={
+                          item?.senderId === paramObj?.uuid ? false : true
+                        }
+                        sx={{ width: "100%" }}
+                      >
+                        {/* <UndoOutlinedIcon /> */}
+                        Undo
                       </Button>
                     </div>
                   </div>
@@ -164,7 +214,7 @@ const HomepageContainer = () => {
                 onClick={getPreviousPage}
                 sx={{ width: "100%" }}
               >
-                previous
+                <ArrowBackOutlinedIcon /> previous
               </Button>
             </div>
           </div>
@@ -183,6 +233,7 @@ const HomepageContainer = () => {
                 sx={{ width: "100%" }}
               >
                 Next
+                <ArrowForwardOutlinedIcon />
               </Button>
             </div>
           </div>

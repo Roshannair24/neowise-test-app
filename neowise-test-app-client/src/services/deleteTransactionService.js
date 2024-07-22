@@ -3,13 +3,15 @@ import axios from "axios";
 
 let responseAxios = null;
 
-export const getUserDataApi = async (action) => {
+export const deleteTransactionApi = async (action) => {
   const payload = action.payload;
 
   let accessToken = sessionStorage.getItem("accessToken");
 
+  console.log("deleteTransactionApi  payload =====>", payload);
+
   await axios
-    .get(`${url}/api/users/${action?.payload?.uuid}`, {
+    .delete(`${url}/api/transactions/${payload?.transactionId}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

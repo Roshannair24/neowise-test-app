@@ -6,6 +6,7 @@ const {
   findUser,
   objectIsEmpty,
   findTransaction,
+  deleteMatchingPatternsRedis,
 } = require("../utils/utils");
 
 const getTransaction = async (req, res, next) => {
@@ -28,7 +29,7 @@ const getTransaction = async (req, res, next) => {
     await global.redisClient.set(
       req?.params?.transactionId,
       JSON.stringify(primaryTransactionObj),
-      { EX: 1 * 10 }
+      { EX: 1 * 20 }
     );
 
     console.log("setttt");
@@ -62,7 +63,7 @@ const getTransactions = async (req, res, next) => {
     await global.redisClient.set(
       `PAGE${pageNumber}LIMIT${pageSize}`,
       JSON.stringify(items),
-      { EX: 1 * 10 }
+      { EX: 1 * 20 }
     );
 
     // res.json({
@@ -122,6 +123,9 @@ const createTransaction = async (req, res, next) => {
         // Commit the transaction
         await session.commitTransaction();
         console.log("Mongo Transaction committed successfully");
+
+        await deleteMatchingPatternsRedis("PAGE*LIMIT*");
+        console.log("Keys deleted successfully");
 
         res.json({
           msg: "Transaction executed",
@@ -192,6 +196,9 @@ const deleteTransaction = async (req, res, next) => {
       // Commit the transaction
       await session.commitTransaction();
       console.log("Mongo Transaction committed successfully");
+
+      await deleteMatchingPatternsRedis("PAGE*LIMIT*");
+      console.log("Keys deleted successfully");
 
       res.json({
         msg: "Transaction deleted",
