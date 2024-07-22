@@ -22,7 +22,7 @@ let usersRoute = require("./routes/usersRoute");
 let authRoute = require("./routes/authRoute");
 
 app.use("/api/transactions", authenticateJWT, transactionRoute);
-app.use("/api/users", authenticateJWT, usersRoute);
+app.use("/api/users", usersRoute);
 app.use("/api/auth", authRoute);
 
 app.get("/", (req, res) => {

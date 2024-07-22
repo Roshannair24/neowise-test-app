@@ -107,6 +107,11 @@ const LoginContainer = () => {
           </div>
         </div>
 
+        <div className="t-left f-12">
+          <span className="weight-600">Note:</span>  The app is in development mode. Use 'development' as the password to
+          login.
+        </div>
+
         <div
           style={{
             width: "100%",

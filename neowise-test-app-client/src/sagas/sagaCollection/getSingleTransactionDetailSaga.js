@@ -22,7 +22,7 @@ export function* getSingleTransactionDetailsSaga(action) {
       openSnackbar({
         type: "error",
         isShow: true,
-        msg: resp?.data?.msg || "Error",
+        msg: resp?.data?.error || resp?.data?.msg || "Error",
       })
     );
   }

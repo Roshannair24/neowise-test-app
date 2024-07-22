@@ -14,7 +14,7 @@ const getTransaction = async (req, res, next) => {
   console.log("getTransaction  req.params", req?.params);
 
   try {
-    await delay(2000);
+    // await delay(2000);
 
     let primaryTransactionObj = await findTransaction(
       req?.params?.transactionId
@@ -46,7 +46,7 @@ const getTransactions = async (req, res, next) => {
   console.log(" getTransactions  req.query", req?.query);
   console.log(" getTransactions  req.params", req?.params);
 
-  await delay(2000);
+  // await delay(2000);
 
   const pageNumber = Number(req?.query?.page) || 1; // Page number (default is 1)
   const pageSize = Number(req?.query?.limit) || 3; // Number of documents per page

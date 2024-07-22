@@ -177,12 +177,13 @@ const HomepageContainer = () => {
                               transactionId: item?.transactionId,
                               page: page,
                               limit: 5,
+                              paramObjUuid: paramObj?.uuid
                             })
                           )
                         }
-                        disabled={
-                          item?.senderId === paramObj?.uuid ? false : true
-                        }
+                        // disabled={
+                        //   item?.senderId === paramObj?.uuid ? false : true
+                        // }
                         sx={{ width: "100%" }}
                       >
                         {/* <UndoOutlinedIcon /> */}

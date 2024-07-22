@@ -3,6 +3,7 @@ import { openSnackbar } from "../../reducers/snackbarReducer";
 
 import { createTransactionApi } from "../../services/createTransactionService";
 import { updateTransactions } from "../../reducers/transactionReducer";
+import { getUserData } from "../../reducers/loginReducer";
 
 //rorkersaga
 export function* createTransactionSaga(action) {
@@ -17,12 +18,14 @@ export function* createTransactionSaga(action) {
       })
     );
     yield put(updateTransactions([]));
+
+    yield put(getUserData({ uuid: action?.payload?.paramObjUuid }));
   } else {
     yield put(
       openSnackbar({
         type: "error",
         isShow: true,
-        msg: resp?.data?.msg || "Error",
+        msg: resp?.data?.error || resp?.data?.msg || "Error",
       })
     );
   }

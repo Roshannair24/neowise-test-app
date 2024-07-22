@@ -63,6 +63,7 @@ const CreateTransactionContainer = () => {
         amount: amount,
         senderId: sendersId,
         receiverId: receiversId,
+        paramObjUuid: paramObj?.uuid
       };
       dispatch(createTransaction(payloadToDisptach));
 
