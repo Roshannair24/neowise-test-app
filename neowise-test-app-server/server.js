@@ -21,7 +21,7 @@ let transactionRoute = require("./routes/transactionsRoute");
 let usersRoute = require("./routes/usersRoute");
 let authRoute = require("./routes/authRoute");
 
-app.use("/api/transactions",authenticateJWT, transactionRoute);
+app.use("/api/transactions", authenticateJWT, transactionRoute);
 app.use("/api/users", authenticateJWT, usersRoute);
 app.use("/api/auth", authRoute);
 
@@ -29,16 +29,20 @@ app.get("/", (req, res) => {
   res.send("neowise Hello World! HTTPS!");
 });
 
-//mongodb connection
-mongoose.connect(mongodbUrl, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  // useCreateIndex: true,
-});
-const connection = mongoose.connection;
-connection.once("open", () => {
-  console.log("Connection with mongo established succesfully");
-});
+try {
+  //mongodb connection
+  mongoose.connect(mongodbUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    // useCreateIndex: true,
+  });
+  const connection = mongoose.connection;
+  connection.once("open", () => {
+    console.log("Connection with mongo established succesfully");
+  });
+} catch (error) {
+  console.log("mongoose error=>", error);
+}
 
 global.redisClient = null;
 //redis

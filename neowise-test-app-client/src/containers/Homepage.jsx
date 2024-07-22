@@ -26,8 +26,6 @@ const HomepageContainer = () => {
     (state) => state?.transactionReducer
   );
 
-  console.log("transactionsLatestReduxState", transactionsLatestReduxState);
-
   useEffect(() => {
     dispatch(
       getUserData({
@@ -56,8 +54,6 @@ const HomepageContainer = () => {
   };
 
   const navigateToTransactionInfo = (localUuid) => {
-    console.log("localUuid", localUuid);
-
     navigate(`/home/${paramObj?.uuid}/${localUuid}`);
   };
 

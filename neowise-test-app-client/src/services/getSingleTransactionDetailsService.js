@@ -8,8 +8,6 @@ export const getSingleTransactionDetailsApi = async (action) => {
 
   let accessToken = sessionStorage.getItem("accessToken");
 
-  console.log(" getSingleTransactionDetailsApi payload =====>", payload);
-
   await axios
     .get(`${url}/api/transactions/${payload?.transactionId}`, {
       headers: {

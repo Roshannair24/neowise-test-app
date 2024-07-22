@@ -8,10 +8,8 @@ export const createTransactionApi = async (action) => {
 
   let accessToken = sessionStorage.getItem("accessToken");
 
-  console.log("createTransactionApi  payload =====>", payload);
-
   await axios
-    .post(`${url}/api/transactions`,payload, {
+    .post(`${url}/api/transactions`, payload, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

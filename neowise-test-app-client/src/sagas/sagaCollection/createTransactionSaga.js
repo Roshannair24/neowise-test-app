@@ -6,11 +6,7 @@ import { updateTransactions } from "../../reducers/transactionReducer";
 
 //rorkersaga
 export function* createTransactionSaga(action) {
-  console.log("createTransactionSaga action", action);
-
   let resp = yield call(createTransactionApi, action);
-
-  console.log("resp", resp?.data);
 
   if (resp?.data?.msg === "Transaction executed") {
     yield put(

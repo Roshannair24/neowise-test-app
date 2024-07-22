@@ -58,8 +58,6 @@ const CreateTransactionContainer = () => {
   const submitTransaction = () => {
     if (allFieldsCheckValidated() === false) {
     } else {
-      console.log("disparhcing...");
-
       let payloadToDisptach = {
         details: description,
         amount: amount,

@@ -6,11 +6,7 @@ import { updateSingleTransactionDetails } from "../../reducers/transactionReduce
 
 //rorkersaga
 export function* getSingleTransactionDetailsSaga(action) {
-  console.log("getSingleTransactionDetailsSaga action", action);
-
   let resp = yield call(getSingleTransactionDetailsApi, action);
-
-  console.log("resp", resp?.data);
 
   if (resp?.data) {
     // yield put(

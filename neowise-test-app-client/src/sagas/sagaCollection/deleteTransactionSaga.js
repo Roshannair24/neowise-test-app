@@ -6,11 +6,7 @@ import { getTransactions } from "../../reducers/transactionReducer";
 
 //rorkersaga
 export function* deleteTransactionSaga(action) {
-  console.log("deleteTransaction action", action);
-
   let resp = yield call(deleteTransactionApi, action);
-
-  console.log("resp", resp?.data);
 
   if (resp?.data?.msg === "Transaction deleted") {
     yield put(

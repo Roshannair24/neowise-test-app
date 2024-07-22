@@ -8,8 +8,6 @@ export const deleteTransactionApi = async (action) => {
 
   let accessToken = sessionStorage.getItem("accessToken");
 
-  console.log("deleteTransactionApi  payload =====>", payload);
-
   await axios
     .delete(`${url}/api/transactions/${payload?.transactionId}`, {
       headers: {

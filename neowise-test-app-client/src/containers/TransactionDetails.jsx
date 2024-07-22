@@ -17,8 +17,6 @@ const TransactionDetailsContainer = () => {
   const paramObj = useParams();
 
   useEffect(() => {
-    console.log("paramObj", paramObj);
-
     dispatch(
       getSingleTransactionDetails({
         transactionId: paramObj?.transactionId,
@@ -34,8 +32,6 @@ const TransactionDetailsContainer = () => {
   const transactionsLatestReduxState = useSelector(
     (state) => state?.transactionReducer
   );
-
-  console.log("transactionsLatestReduxState", transactionsLatestReduxState);
 
   return (
     <div className="bg-col-primary h-100vh d-flex d-flex-dir-column d-flex-align-items-cent p-1">
