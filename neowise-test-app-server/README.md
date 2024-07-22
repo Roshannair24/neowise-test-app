@@ -31,3 +31,9 @@
 ### 1: Acccess login screen
 - Chrome may show warning of unautharised access, click on Advanced and Proceed to the login page
 - type uuid and development as password.
+
+
+### Tech stack
+- Frontend state management- React, Redux Saga
+- Performace - Redis for caching, Indexing in mongodb
+- authentication  - JWT Token
