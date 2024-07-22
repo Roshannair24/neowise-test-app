@@ -28,7 +28,7 @@
 ### 1: Install packages
 - `npm i`
 
-### 1: Acccess login screen
+### 2: Acccess login screen
 - Chrome may show warning of unautharised access, click on Advanced and Proceed to the login page
 - type uuid and development as password.
 
