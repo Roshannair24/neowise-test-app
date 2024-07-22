@@ -1,4 +1,4 @@
-## Directions to setup the server
+### Directions to setup the server
 
 **Preferred Specs:**
 
@@ -21,3 +21,13 @@
 - In another tab, Run `node createDB.js` script to push dummy data to database.
 
 ### Server is setup.
+
+
+### Directions to setup the client
+
+### 1: Install packages
+- `npm i`
+
+### 1: Acccess login screen
+- Chrome may show warning of unautharised access, click on Advanced and Proceed to the login page
+- type uuid and development as password.
